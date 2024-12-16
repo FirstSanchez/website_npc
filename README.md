@@ -14,7 +14,7 @@ A FiveM resource that allows you to create interactive locations with either NPC
 - Opens external websites when players interact
 - Automatic NPC cleanup on resource stop
 - ESX framework integration
-- Performance optimized with smart sleep system
+- Performance optimized
 
 ## Dependencies
 
@@ -73,7 +73,7 @@ Config.NPCs = {
 2. Each location can be either an NPC or a marker based on the useMarker setting
 3. Approach an NPC/marker to see the interaction prompt
 4. Press `E` to interact and open the configured website
-5. Press `ESC` to close the website
+5. Press `ESC` to close the NUI Focus 
 
 ## Controls
 
