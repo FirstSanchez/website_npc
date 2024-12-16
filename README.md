@@ -88,14 +88,13 @@ Config.NPCs = {
 - Freezes NPCs in place and makes them invincible
 - Optimized with proper model loading/unloading
 - Smart sleep system for performance optimization
-- Fixed orange marker style (type 21) for better visibility
 
 ## Modifications and Usage Terms
 
 Modifications and improvements to this resource are welcome and encouraged. However, the resale or commercial redistribution of this resource or its derivatives is strictly prohibited.
 
 - `E` - Interact with NPC/marker
-- `ESC` - Close website
+- `ESC` - Close NUI Focus
 
 ## Technical Details
 
