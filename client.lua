@@ -26,19 +26,25 @@ CreateThread(function()
     SpawnAllNPCs()
     
     while true do
-        Wait(0)
         local playerCoords = GetEntityCoords(PlayerPedId())
+        local isNearNPC = false
         
         for i, npcData in ipairs(Config.NPCs) do
             local dist = #(playerCoords - npcData.coords)
             
             if dist < 2.0 then
+                isNearNPC = true
                 ESX.ShowHelpNotification(npcData.label)
                 
                 if IsControlJustReleased(0, 38) then -- E
                     TriggerServerEvent('website_npc:openWebsite', npcData.website)
                 end
             end
+        end
+        if isNearNPC then
+            Wait(0)
+        else
+            Wait(500)
         end
     end
 end)
