@@ -1,15 +1,17 @@
 # Website NPC
 
-A FiveM resource that spawns configurable NPCs who can open specified websites when players interact with them.
+A FiveM resource that allows you to create interactive locations with either NPCs or markers that can open specified websites when players interact with them.
 
 ## Features
 
-- Spawn multiple NPCs at configurable locations
-- Custom NPC models for each spawn point
+- Choose between NPC or marker for each location individually
+- Customizable marker colors and scales
+- Custom NPC models
 - Customizable interaction labels
-- Opens external websites when players interact with NPCs
+- Opens external websites when players interact
 - Automatic NPC cleanup on resource stop
 - ESX framework integration
+- Performance optimized with smart sleep system
 
 ## Dependencies
 
@@ -26,15 +28,26 @@ ensure website_npc
 
 ## Configuration
 
-All NPCs can be configured in `config.lua`. Each NPC entry requires the following properties:
+Each location in `Config.NPCs` requires the following properties:
 
 ```lua
 {
-    coords = vector3(x, y, z),    -- NPC spawn coordinates
-    heading = number,             -- NPC heading/rotation
-    model = "model_name",         -- NPC model name
+    coords = vector3(x, y, z),    -- Spawn coordinates
+    heading = number,             -- Heading/rotation (for NPCs)
+    model = "model_name",         -- NPC model name (when not using marker)
     website = "url",              -- Website URL to open
-    label = "interaction_text"    -- Text shown when player is near
+    label = "interaction_text",   -- Text shown when player is near
+    useMarker = false,           -- Set to true for marker, false for NPC
+    marker = {                    -- Marker settings (when useMarker is true)
+        type = number,            -- Marker type
+        scale = vector3(x, y, z), -- Marker size
+        color = {                 -- Marker color
+            r = 255,
+            g = 0,
+            b = 0,
+            a = 100
+        }
+    }
 }
 ```
 
@@ -47,21 +60,41 @@ Config.NPCs = {
         heading = 303.2139,
         model = "a_m_y_business_02",
         website = "https://example.com",
-        label = "~r~[E]~w~ Open Website"
+        label = "~r~[E]~w~ Open Website",
+        useMarker = false, -- Will spawn as NPC
+        marker = {
+            type = 1,
+            scale = vector3(1.0, 1.0, 1.0),
+            color = {r = 255, g = 0, b = 0, a = 100}
+        }
+    },
+    {
+        coords = vector3(127.1963, -1295.5615, 29.4198),
+        heading = 222.4668,
+        model = "a_m_y_business_0",
+        website = "https://example.com",
+        label = "~r~[E]~w~ Open Website",
+        useMarker = true, -- Will spawn as marker
+        marker = {
+            type = 1,
+            scale = vector3(1.0, 1.0, 1.0),
+            color = {r = 0, g = 255, b = 0, a = 100}
+        }
     }
 }
 ```
 
 ## Usage
 
-1. NPCs will automatically spawn at their configured locations when the resource starts
-2. Approach an NPC to see the interaction prompt
-3. Press `E` to interact with the NPC and open their configured website
-4. Press `ESC` to close the website
+1. Configure your locations in the config file
+2. Each location can be either an NPC or a marker based on the useMarker setting
+3. Approach an NPC/marker to see the interaction prompt
+4. Press `E` to interact and open the configured website
+5. Press `ESC` to close the website
 
 ## Controls
 
-- `E` - Interact with NPC
+- `E` - Interact with NPC/marker
 - `ESC` - Close website
 
 ## Technical Details
@@ -71,6 +104,7 @@ Config.NPCs = {
 - Includes server-side event handling for security
 - Freezes NPCs in place and makes them invincible
 - Optimized with proper model loading/unloading
+- Smart sleep system for performance optimization
 
 ## Modifications and Usage Terms
 
