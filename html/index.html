@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Website Redirect</title>
+    <style>
+        body {
+            background: transparent;
+        }
+    </style>
+    <script>
+        window.addEventListener('message', function(event) {
+            if (event.data.type === "openWebsite") {
+                window.invokeNative('openUrl', event.data.link);
+            }
+        });
+
+        document.addEventListener('keyup', function(event) {
+            if (event.key === "Escape") {
+                fetch(`https://${GetParentResourceName()}/closeWebsite`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({})
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>
