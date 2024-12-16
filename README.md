@@ -2,6 +2,9 @@
 
 A FiveM resource that allows you to create interactive locations with either NPCs or markers that can open specified websites when players interact with them.
 
+## Showcase
+[Watch the showcase video](https://streamable.com/wwtpxb)
+
 ## Features
 
 - Choose between NPC or marker for each location individually
@@ -37,17 +40,7 @@ Each location in `Config.NPCs` requires the following properties:
     model = "model_name",         -- NPC model name (when not using marker)
     website = "url",              -- Website URL to open
     label = "interaction_text",   -- Text shown when player is near
-    useMarker = false,           -- Set to true for marker, false for NPC
-    marker = {                    -- Marker settings (when useMarker is true)
-        type = number,            -- Marker type
-        scale = vector3(x, y, z), -- Marker size
-        color = {                 -- Marker color
-            r = 255,
-            g = 0,
-            b = 0,
-            a = 100
-        }
-    }
+    useMarker = false            -- Set to true for marker, false for NPC
 }
 ```
 
@@ -61,12 +54,7 @@ Config.NPCs = {
         model = "a_m_y_business_02",
         website = "https://example.com",
         label = "~r~[E]~w~ Open Website",
-        useMarker = false, -- Will spawn as NPC
-        marker = {
-            type = 1,
-            scale = vector3(1.0, 1.0, 1.0),
-            color = {r = 255, g = 0, b = 0, a = 100}
-        }
+        useMarker = false -- Will spawn as NPC
     },
     {
         coords = vector3(127.1963, -1295.5615, 29.4198),
@@ -74,12 +62,7 @@ Config.NPCs = {
         model = "a_m_y_business_0",
         website = "https://example.com",
         label = "~r~[E]~w~ Open Website",
-        useMarker = true, -- Will spawn as marker
-        marker = {
-            type = 1,
-            scale = vector3(1.0, 1.0, 1.0),
-            color = {r = 0, g = 255, b = 0, a = 100}
-        }
+        useMarker = true -- Will spawn as marker
     }
 }
 ```
@@ -93,6 +76,23 @@ Config.NPCs = {
 5. Press `ESC` to close the website
 
 ## Controls
+
+- `E` - Interact with NPC/marker
+- `ESC` - Close website
+
+## Technical Details
+
+- Uses NUI for website handling
+- Implements proper cleanup of NPCs on resource stop
+- Includes server-side event handling for security
+- Freezes NPCs in place and makes them invincible
+- Optimized with proper model loading/unloading
+- Smart sleep system for performance optimization
+- Fixed orange marker style (type 21) for better visibility
+
+## Modifications and Usage Terms
+
+Modifications and improvements to this resource are welcome and encouraged. However, the resale or commercial redistribution of this resource or its derivatives is strictly prohibited.
 
 - `E` - Interact with NPC/marker
 - `ESC` - Close website
